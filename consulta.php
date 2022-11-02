@@ -1,3 +1,6 @@
+<?php
+require_once("controller/controllerCadastro.php");
+?>
 <html>
     <head>
         <title>Sistema de login</title>
@@ -9,10 +12,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 
     </head>
-        <body>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
+    <body>
+        <!--CABEÇALHO-->
+        <div class="container">
+            <div class="row">
+                <div class="col">
                     <nav class="navbar bg-light">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="#">
@@ -21,87 +25,92 @@
                             </a>
                         </div>
                     </nav>
-                    </div>
-                </div>
-                <!--FIM DO CABEÇALHO-->
-                
-                <div class="row">
-                    <div class="col">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <div class="container-fluid">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">   
-                                <span class="navbar-toggler-icon"></span>
-                                
-                                </button>
-                                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                        <div class="navbar-nav">
-                                            <a class="nav-link active" aria-current="page" href="index.php">Cadastrar</a>
-                                            <a class="nav-link" href="consulta.php">Consultar</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-                
-
-                <div class="row">
-                    <div class="col">
-                        <nav class="navbar bg-light">
-                            <div class="container-fluid">
-                            <span class="navbar-brand">Lista de Usuário</span>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">&nbsp;</div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Usuário</th>
-                                <th scope="col">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-dark">Editar</button>
-                                        <button type="button" class="btn btn-dark">Excluir</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-dark">Editar</button>
-                                        <button type="button" class="btn btn-dark">Excluir</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>
-                                        <button type="button" class="btn btn-dark">Editar</button>
-                                        <button type="button" class="btn btn-dark">Excluir</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
+            <!--FIM DO CABEÇALHO-->
+                
+            <!--NAVBAR-->
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">   
+                            <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <div class="navbar-nav">
+                                    <a class="nav-link active" aria-current="page" href="index.php">Cadastrar</a>
+                                    <a class="nav-link" href="consulta.php">Consultar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!--FIM DA NAVBAR-->
+
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar bg-light">
+                        <div class="container-fluid">
+                            <span class="navbar-brand">Lista de Usuário</span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">&nbsp;</div>
+            </div>
+
+            <!--TABELA-->
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <!--COLUNAS-->
+                        <thead>
+                            <tr>
+                                <th scope="col">Email</th>
+                                <th scope="col">Senha</th>
+                                <th scope="col">Endereço</th>
+                                <th scope="col">Bairro</th>
+                                <th scope="col">Cidade</th>
+                                <th scope="col">CEP</th>
+                            </tr>
+                        </thead>
+
+                        <!--DADOS-->
+                        <tbody>
+                        <?php
+                            $controller = new controllerCadastro();
+                            $resultado = $controller->listar();
+                            for($i=0; $i<count($resultado); $i++){
+                        ?>
+
+                            <tr>
+                                <td scope="row"><?php echo $resultado[$i]['email']; ?></td>
+                                <td scope="row"><?php echo $resultado[$i]['senha']; ?></td>
+                                <td scope="row"><?php echo $resultado[$i]['endereco']; ?></td>
+                                <td scope="row"><?php echo $resultado[$i]['bairro']; ?></td>
+                                <td scope="row"><?php echo $resultado[$i]['cidade']; ?></td>
+                                <td scope="row"><?php echo $resultado[$i]['cep']; ?></td>
+                                <td scope="row">
+                                    <button type="button" class="btn btn-dark" style="width: 72px;">Editar</button>
+                                    <button type="button" class="btn btn-dark" style="width: 72px;">Excluir</button>
+                                </td>
+                            </tr>
+
+                        <?php
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--FIM DA TABELA-->
+
+        </div>
     </body>
 </html>
 
