@@ -1,5 +1,5 @@
 <?php
-require_once("controller/controllerCadastro.php");
+require_once("controller/cadastroController.php");
 ?>
 <html>
     <head>
@@ -83,8 +83,8 @@ require_once("controller/controllerCadastro.php");
                         <!--DADOS-->
                         <tbody>
                         <?php
-                            $controller = new controllerCadastro();
-                            $resultado = $controller->listar();
+                            $controller = new cadastroController();
+                            $resultado = $controller->listar(0);
                             for($i=0; $i<count($resultado); $i++){
                         ?>
 
@@ -96,7 +96,7 @@ require_once("controller/controllerCadastro.php");
                                 <td scope="row"><?php echo $resultado[$i]['cidade']; ?></td>
                                 <td scope="row"><?php echo $resultado[$i]['cep']; ?></td>
                                 <td scope="row">
-                                    <button type="button" class="btn btn-dark" style="width: 72px;">Editar</button>
+                                    <button type="button" class="btn btn-dark" style="width: 72px;" onclick="location.href='editar.php?id=<?php echo $resultado[$i]['id']; ?>'">Editar</button>
                                     <button type="button" class="btn btn-dark" style="width: 72px;">Excluir</button>
                                 </td>
                             </tr>
