@@ -1,5 +1,5 @@
 <?php
-require_once("controller/cadastroController.php");
+require_once("controller/controllerCadastro.php");
 ?>
 <html>
     <head>
@@ -68,11 +68,11 @@ require_once("controller/cadastroController.php");
 
             
             <?php
-                $controller = new cadastroController();
+                $controller = new controllerCadastro();
                 $resultado = $controller->listar($_GET['id']);
             ?>
             <!--FORMULARIO-->
-            <form class="row g-3" method="post" action="controller/cadastroController.php?funcao=editar&id=<?php echo $resultado[0]['id']; ?>">
+            <form class="row g-3" method="post" action="controller/controllerCadastro.php?funcao=editar&id=<?php echo $resultado[0]['id']; ?>">
                 <!--EMAIL-->
                 <div class="col-md-6">
                     <label for="lblEmail" class="form-label">Email</label>
